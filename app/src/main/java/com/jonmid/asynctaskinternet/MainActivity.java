@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jonmid.asynctaskinternet.Models.Comment;
+import com.jonmid.asynctaskinternet.Parser.Json;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.List;
@@ -108,6 +111,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
+            try {
+                commentList = Json.getdata(s);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
             progressBar.setVisibility(View.GONE);
             processData(s);
         }

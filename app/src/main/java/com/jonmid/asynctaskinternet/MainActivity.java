@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     //TextView textView;
     RecyclerView recyclerView;
     List<Comment> commentList;
-    
+
 
 
     @Override

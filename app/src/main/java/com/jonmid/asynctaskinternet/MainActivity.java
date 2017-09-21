@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jonmid.asynctaskinternet.Adapter.CommentAdapter;
 import com.jonmid.asynctaskinternet.Models.Comment;
 import com.jonmid.asynctaskinternet.Parser.Json;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     //TextView textView;
     RecyclerView recyclerView;
     List<Comment> commentList;
+    CommentAdapter commentAdapter;
 
 
 
@@ -67,10 +69,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void processData(String s){
+    public void processData(){
         // textView.setText("item: "+s);
         // textView.setTextSize(Integer.parseInt(s));
         //textView.append(s + "\n");
+        commentAdapter = new CommentAdapter(commentList,getApplicationContext());
+        recyclerView.setAdapter(commentAdapter);
+
     }
 
     public class MyTask extends AsyncTask<String, String, String>{
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             progressBar.setVisibility(View.GONE);
-            processData(s);
+            processData();
         }
     }
 }
